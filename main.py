@@ -5,11 +5,15 @@ import os
 STORY = "She sold everything. Kept the photograph."
 
 
+def count_words(text):
+    """Count the words in a story (split on whitespace)."""
+    return len(text.split())
+
+
 def validate_story(text):
     """Gate check: exactly six words, 1-60 chars, not only whitespace."""
-    words = text.split()
-    if len(words) != 6:
-        raise ValueError(f"expected exactly 6 words, got {len(words)}")
+    if count_words(text) != 6:
+        raise ValueError(f"expected exactly 6 words, got {count_words(text)}")
     if not 1 <= len(text) <= 60:
         raise ValueError(f"expected 1-60 chars, got {len(text)}")
     if not text.strip():
