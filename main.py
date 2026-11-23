@@ -10,12 +10,18 @@ def count_words(text):
     return len(text.split())
 
 
+def validate_length(text):
+    """Gate check: story must be 1-60 chars long."""
+    if not 1 <= len(text) <= 60:
+        raise ValueError(f"expected 1-60 chars, got {len(text)}")
+    return text
+
+
 def validate_story(text):
     """Gate check: exactly six words, 1-60 chars, not only whitespace."""
     if count_words(text) != 6:
         raise ValueError(f"expected exactly 6 words, got {count_words(text)}")
-    if not 1 <= len(text) <= 60:
-        raise ValueError(f"expected 1-60 chars, got {len(text)}")
+    validate_length(text)
     if not text.strip():
         raise ValueError("story must not be only whitespace")
     return text
